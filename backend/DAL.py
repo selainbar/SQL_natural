@@ -1,5 +1,8 @@
+import json
 from sqlalchemy.orm import Session
 from passlib.hash import bcrypt
+from . import models, schemas
+
 
 class UserDAL:
     def __init__(self, db_session: Session):
@@ -10,7 +13,7 @@ class UserDAL:
         user = models.User(
             username=user_data.username,
             password=hashed_pw,
-            databases=user_data.databases
+            databases=json.dumps(user_data.databases)  # Serialize list to JSON string
         )
         self.db.add(user)
         self.db.commit()
@@ -27,9 +30,9 @@ class UserDAL:
         user = self.get_user_by_id(user_id)
         if not user:
             return None
-        user.username = update_data.username
-        user.password = bcrypt.hash(update_data.password)
-        user.databases = update_data.databases
+        user.username = update_data.username # type: ignore
+        user.password = bcrypt.hash(update_data.password) # type: ignore
+        user.databases = json.dumps(update_data.databases)  # type: ignore # Serialize list to JSON string
         self.db.commit()
         self.db.refresh(user)
         return user

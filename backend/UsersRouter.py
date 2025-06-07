@@ -2,6 +2,8 @@ from fastapi import APIRouter, HTTPException, Depends
 from fastapi.responses import JSONResponse, Response
 from sqlalchemy.orm import Session
 from JWTrouter import verify_token
+from . import models
+from . import schemas
 
 router = APIRouter(
     prefix="/users",
