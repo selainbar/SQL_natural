@@ -1,7 +1,9 @@
 import json
 from sqlalchemy.orm import Session
 from passlib.hash import bcrypt
-from . import models, schemas
+
+from . import models
+from . import schemas
 
 
 class UserDAL:
