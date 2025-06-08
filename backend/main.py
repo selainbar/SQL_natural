@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from .users.UsersRouter import router as users_router
+from users.UsersRouter import router as users_router
 from .jwtRouter.JWTrouter import router as jwt_router
 
 app = FastAPI()

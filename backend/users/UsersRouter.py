@@ -2,8 +2,8 @@ from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
 from .DAL import UserDAL
 from .Dependencies import get_db
-from .users import schemas
-from backend.jwtRouter.JWTrouter import verify_token
+from . import schemas
+from jwtRouter.JWTrouter import verify_token
 from typing import List
 
 router = APIRouter(
